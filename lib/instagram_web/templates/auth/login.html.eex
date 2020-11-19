@@ -1,0 +1,15 @@
+<div class="container mt-5">
+    <div class="d-flex justify-content-center">
+    <div class="form-group w-50">
+                <%= form_for @changeset , Routes.auth_path(@conn,:callback), fn f -> %>
+                    <%= text_input f , :email , class: "form-control mt-2", placeholder: "Email" %>
+                    <%= text_input f , :password , class: "form-control mt-2", placeholder: "Password" %>
+                    <%= submit  "Login", class: "btn btn-primary btn-lg mt-3" %>
+     <div class="float-right mt-2">
+                 <a href="/auth/google"> <img width="250" height="80" src="<%= Routes.static_path(@conn, "/images/google_btn.png") %>" /></a>
+                </div>
+                <% end %>
+
+    </div></div>
+    if you haven't register before click here <%= link "Register" , to: Routes.auth_path(@conn,:register) %>
+</div>

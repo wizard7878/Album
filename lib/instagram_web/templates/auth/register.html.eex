@@ -1,0 +1,16 @@
+<div class=" mt-5">
+    <div class="d-flex justify-content-center">
+        <div class="form-group w-50">
+                <%= form_for @changeset , Routes.auth_path(@conn,:registering), fn f -> %>
+                    <%= text_input f , :fname , class: "form-control mt-2", placeholder: "First Name" %>
+                    <%= text_input f , :lname , class: "form-control mt-2" ,placeholder: "Last name" %>
+                    <%= text_input f , :email , class: "form-control mt-2", placeholder: "Email" %>
+                    <%= text_input f , :password , class: "form-control mt-2", placeholder: "Password" %>
+                    <%= text_input f , :re_password , class: "form-control mt-2" ,placeholder: "Password Again" %>
+                    <%= submit "Register" , class: "btn btn-primary mt-2" %>
+
+                <% end %>
+        </div>
+    </div>
+    if you have register before click here <%= link "Login" , to: Routes.auth_path(@conn,:login) %>
+</div>

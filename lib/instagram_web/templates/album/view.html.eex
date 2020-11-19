@@ -1,0 +1,27 @@
+  <h1 class="display-4 mt-4">Comments with Socket </h1>
+<div class= "d-flex flex-column justify-content-center mt-5">
+<img width="500" height="200" src="<%= Routes.static_path(@conn, "/images/#{@article.image}")%>"/>
+<br>
+
+<%= @article.title %> <br>
+<%= @article.body %><br>
+</div>
+<div class="mt-5">
+<h5 class="lead">Send a Comment</h5>
+<div class="form-group">
+    <input id="form-comment" class="form-control w-50" placeholder = "Comment">
+    <button id="btn" class="btn btn-success mt-2">Send Comment</button>
+</div>
+
+<ul class="list-group list-unstyled">
+
+
+<ul>
+</div>
+
+<script>
+    document.addEventListener("DOMContentLoaded", function(){
+      window.createSocket(<%= @article.id %>)
+    })
+
+</script>

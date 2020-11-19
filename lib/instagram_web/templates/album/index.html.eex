@@ -1,0 +1,47 @@
+   <section class="jumbotron text-center">
+        <div class="container">
+          <h1 class="jumbotron-heading">Welcome to Album</h1>
+          <p class="lead text-muted">Welcome to Album website. you can share images and discuss about it with others</p>
+          <p>
+            <%= link "Create a post" ,to: Routes.dashboard_path(@conn,:index), class: "btn btn-primary my-2" %>
+            <%= if @conn.assigns.user do %>
+              <%= link "LogOut" , class: "btn btn-danger", to: Routes.auth_path(@conn,:logout) %>
+            <% else %>
+            <%= link "Login" , class: "btn btn-secondary", to: Routes.auth_path(@conn,:login) %>
+            <% end %>
+          </p>
+        </div>
+      </section>
+
+      <div class="album py-5 bg-light">
+        <div class="container">
+
+          <div class="row">
+          <%= for post <- @posts do %>
+            <div class="col-md-4">
+              <div class="card mb-4 box-shadow">
+                <img class="card-img-top" src="<%= Routes.static_path(@conn, "/images/#{post.image}") %>" alt="Card image cap">
+                <div class="card-body">
+                  <p class="card-text"><%= post.body%></p>
+                  <div class="d-flex justify-content-between align-items-center">
+
+                    <div class="btn-group">
+                      <%= if @conn.assigns.user do %>
+                        <%= if @conn.assigns.user.id == post.auth_id do%>
+                        <%= link "Edit" , class: "btn btn-sm btn-outline-secondary" , to: Routes.album_path(@conn,:edit,post) %>
+                        <%= link "Delete" , class: "btn btn-sm btn-outline-secondary" , to: Routes.album_path(@conn,:delete,post), method: :delete %>
+                        <% end %>
+                      <% end %>
+                        <%= link "View" , class: "btn btn-sm btn-outline-secondary" , to: Routes.album_path(@conn,:show,post) %>
+                    </div>
+                    <small class="text-muted ml-2"><%= post.inserted_at %></small><br>
+                    <small class="text-muted">Sent by <%= @repo.get(@auth,post.auth_id).fname %></small><br>
+                  </div>
+                </div>
+              </div>
+            </div>
+
+          <% end %>
+          </div>
+        </div>
+      </div>
