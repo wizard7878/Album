@@ -1,4 +1,4 @@
-# Instagram
+# Album
 
 To start your Phoenix server:
 
